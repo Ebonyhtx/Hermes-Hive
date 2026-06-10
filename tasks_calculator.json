@@ -1,0 +1,68 @@
+{
+  "tasks": [
+    {
+      "id": "T1",
+      "title": "实现四则运算引擎",
+      "layer": 1,
+      "deps": [],
+      "type": "code",
+      "assign_to": "coder",
+      "acceptance_criteria": "提供 CalculatorEngine 类，包含 add/sub/mul/div 四个方法，每个方法接收两个 float 返回 float；div 方法在除数为 0 时抛出 ZeroDivisionError"
+    },
+    {
+      "id": "T2",
+      "title": "实现计算器状态管理",
+      "layer": 1,
+      "deps": [],
+      "type": "code",
+      "assign_to": "coder",
+      "acceptance_criteria": "提供 CalculatorState 类管理当前输入、累积结果、待执行操作符；支持 clear() 重置所有状态；支持输入数字拼接、按下操作符时暂存当前值"
+    },
+    {
+      "id": "T3",
+      "title": "构建 tkinter 主窗口布局",
+      "layer": 1,
+      "deps": [],
+      "type": "code",
+      "assign_to": "coder",
+      "acceptance_criteria": "创建主窗口 (400x500, 不可缩放)；顶部 Entry 显示当前输入/结果（右对齐）；数字按钮 0-9 及小数点，运算符按钮 + - × ÷ =, 清空按钮 C；按钮网格 4 行 4 列标准布局"
+    },
+    {
+      "id": "T4",
+      "title": "编写四则运算引擎单元测试",
+      "layer": 2,
+      "deps": ["T1"],
+      "type": "test",
+      "assign_to": "tester",
+      "acceptance_criteria": "使用 unittest 框架；覆盖正常四则运算各至少 2 例；覆盖除数为 0 场景；覆盖浮点数精度场景；覆盖率 >= 95%"
+    },
+    {
+      "id": "T5",
+      "title": "绑定 UI 事件与计算逻辑",
+      "layer": 2,
+      "deps": ["T1", "T2", "T3"],
+      "type": "code",
+      "assign_to": "coder",
+      "acceptance_criteria": "所有数字按钮将对应数字追加到状态并刷新 Entry；运算符按钮暂存当前值+操作符并清空输入；= 按钮触发运算并显示结果；C 按钮调用 state.clear() 并刷新 Entry，异常时显示 'Error'"
+    },
+    {
+      "id": "T6",
+      "title": "运行全部测试并修复",
+      "layer": 3,
+      "deps": ["T4", "T5"],
+      "type": "test",
+      "assign_to": "tester",
+      "acceptance_criteria": "所有测试通过（0 failures, 0 errors）；覆盖率报告生成；若存在失败需记录并通知 coder 修复后复测"
+    },
+    {
+      "id": "T7",
+      "title": "打包为单文件 exe",
+      "layer": 4,
+      "deps": ["T5", "T6"],
+      "type": "build",
+      "assign_to": "toolman",
+      "acceptance_criteria": "使用 PyInstaller --onefile 打包；输出产物 Calculator.exe 置于 dist/ 目录；双击可运行，无终端窗口弹出（--noconsole）；产物体积 < 10MB"
+    }
+  ],
+  "requirements": ["pyinstaller"]
+}
