@@ -1,13 +1,14 @@
 # Changelog
 
-## v4.1.2 (2026-06-10)
+## v4.1.3 (2026-06-10)
 
 ### Fixed
-- `python start.py` now works without arguments (defaults to `start` command)
+- Quick Start now includes `git clone` + `cd` + 3 install methods (pip, source, Docker)
+- `python start.py` works without arguments (defaults to `start` command)
 
 ---
 
-## v4.1.1 (2026-06-10)
+## v4.1.2 (2026-06-10)
 
 ### Fixed
 - Cleaned `_dev/` artifacts from git tracking

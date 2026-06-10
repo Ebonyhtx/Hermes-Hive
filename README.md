@@ -55,17 +55,29 @@ hermes --version
 # → Hermes Agent v0.16.0
 ```
 
-<div align="center">
+### **2.** Install HIVE
 
-### **2.** Install & Start HIVE
+Choose the install method that fits your use case:
 
-</div>
+| If you want to… | Install method | Then run |
+|-----------------|----------------|----------|
+| 🐣 **Try it out** (no dev setup) | `pip install hermes-hive-v4` | `hive-daemon start` |
+| 🛠️ **Develop / customize roles** (source code) | `git clone https://github.com/Ebonyhtx/Hermes-Hive.git`<br>`cd Hermes-Hive`<br>`pip install -e ".[dev]"` | `python start.py` |
+| 🐳 **Run in Docker** | See [Dockerfile](Dockerfile) | `docker build -t hive .` |
 
 ```bash
-pip install -e ".[dev]"
+# After install — start the daemon (either method works):
 python start.py
+# → HIVE daemon started (PID 12345)
 # → Dashboard:  http://127.0.0.1:8421/dashboard
 # → MCP:        http://127.0.0.1:8421/mcp
+
+# Check status
+python start.py status
+# → HIVE daemon: OK running (PID 12345)
+
+# Stop daemon
+python start.py stop
 ```
 
 > 💡 Hermes stores its config at `~/.hermes/`. HIVE stores sessions at `~/.hermes/hive-v4/`.
