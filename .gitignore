@@ -36,6 +36,4 @@ Thumbs.db
 hive.db
 *.log
 _dev/
-_dev/
-*.png
 dashboard.html

@@ -70,6 +70,12 @@ python start.py
 
 > 💡 Hermes stores its config at `~/.hermes/`. HIVE stores sessions at `~/.hermes/hive-v4/`.
 
+<div align="center">
+  <img src="docs/images/dashboard.png" alt="HIVE Dashboard" width="720">
+  <br>
+  <sub><i>HIVE Dashboard — real-time WebSocket console with file browser, artifact viewer, and live build log</i></sub>
+</div>
+
 <div align="right">
   <sub><a href="#install-hermes-agent">↑ Full install guide</a></sub>
 </div>
