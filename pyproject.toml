@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hermes-hive-v4"
-version = "4.1.1"
+version = "4.1.2"
 description = "HIVE — Multi-Agent Orchestration for Hermes Agent"
 authors = [
     {name = "Hermes-Hive Contributors"},

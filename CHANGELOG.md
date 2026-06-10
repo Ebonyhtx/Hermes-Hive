@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.1.2 (2026-06-10)
+
+### Fixed
+- `python start.py` now works without arguments (defaults to `start` command)
+
+---
+
 ## v4.1.1 (2026-06-10)
 
 ### Fixed
