@@ -151,8 +151,8 @@ def status(text_mode: bool = False):
 def main():
     """CLI entry point."""
     if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+        start()
+        return
 
     cmd = sys.argv[1]
     if cmd == "start":
