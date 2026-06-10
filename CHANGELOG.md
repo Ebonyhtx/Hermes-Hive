@@ -1,6 +1,19 @@
 # Changelog
 
-## v4.1.0 (unreleased)
+## v4.1.1 (2026-06-10)
+
+### Fixed
+- Cleaned `_dev/` artifacts from git tracking
+- Updated `.gitignore` (dev/ temp/ png coverage)
+- Fixed PyPI classifiers (removed invalid AI classifier, SPDX license string)
+
+### Added
+- Dashboard screenshot in README as live demo evidence
+- "Customize & Extend" section emphasizing open-source / MCP architecture
+
+---
+
+## v4.1.0 (2026-06-10)
 
 ### Added
 - i18n system: CLI / Dashboard / LLM prompts support Chinese and English
