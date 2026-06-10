@@ -25,7 +25,9 @@
 
 HIVE is an **AI-native build orchestration engine**. Feed it a sentence — _"make a calculator with Python tkinter"_ — and six specialized agent roles (ARC, PLANNER, CODER, TESTER, REVIEWER, TOOLMAN) translate, decompose, generate, test, review, and package your project into a shippable artifact. With iteration loops, rollback, and cross-project memory.
 
-Built on [Hermes Agent](https://github.com/NousResearch/hermes-agent) by Nous Research.
+**Built on [Hermes Agent](https://github.com/NousResearch/hermes-agent) by Nous Research** — HIVE consumes Hermes via MCP tools (`hermes_bridge.py`), making every agent call a lightweight JSON-RPC exchange. The framework is **fully open source** (MIT): swap in any LLM backend, rewrite any role, wire it into your own CI/CD pipeline. The 6-agent pipeline is a **reference architecture** — not a cage.
+
+> 🧩 HIVE is your **starter kit for AI-driven builds**. Fork it, gut the roles, plug in your own agents, point it at your stack. The MCP protocol keeps everything decoupled.
 
 <br>
 
@@ -110,6 +112,36 @@ Six agents collaborate through a **7-state pipeline**, coordinated by a central 
 
 **States**: `idle → translating → planning → executing → testing → done`  
 **Loop**:  ↻ `done → idle` — iterate until satisfied.
+
+---
+
+## ✦ Customize & Extend
+
+HIVE is designed to be **forked, gutted, and rewired**. The 6-agent pipeline is a reference architecture — not a cage.
+
+```python
+# Example: swap in your own agent
+from orchestrator.roles.arc import Architect
+
+class MyCustomArchitect(Architect):
+    """Your LLM, your prompt, your brief schema."""
+    async def translate(self, description: str, lang: str = "en") -> dict:
+        # Call your own API, a local model, or a different Hermes profile
+        return {"project_name": "...", "features": [...], ...}
+```
+
+| What you can change | How |
+|---------------------|-----|
+| **LLM provider** | Swap Hermes for OpenAI, Anthropic, Ollama, or your own endpoint — just implement the MCP bridge interface |
+| **Agent roles** | Override any role class; change prompts, validation, or output schema |
+| **State machine** | Add or remove states and transitions in `machine.py` — the `transitions` library makes it declarative |
+| **Tech stacks** | Add new entries in `toolman.py` under `DELIVERY_TEMPLATES` |
+| **MCP tools** | Register new `@mcp.tool()` decorators in `mcp_server.py` |
+| **Dashboard** | Replace `dashboard.html` or add custom WebSocket event handlers |
+| **Persistence** | Swap SQLite for Postgres by re-implementing `session_manager.py` |
+| **CI/CD** | All MCP tools speak JSON-RPC over HTTP — integrate with any pipeline |
+
+> See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and the role contract interface.
 
 ---
 
@@ -235,7 +267,7 @@ orchestrator/
 
 ## ✦ Install Hermes Agent
 
-Hermes Agent (by [Nous Research](https://github.com/NousResearch)) powers all LLM calls — ARC, PLANNER, CODER, TESTER, REVIEWER. HIVE invokes it through `hermes_bridge.py`.
+Hermes Agent (by [Nous Research](https://github.com/NousResearch)) powers all LLM calls through MCP — HIVE speaks to it via JSON-RPC over the Hermes CLI bridge — ARC, PLANNER, CODER, TESTER, REVIEWER. HIVE invokes it through `hermes_bridge.py`.
 
 **Linux / macOS / WSL2**
 ```bash
